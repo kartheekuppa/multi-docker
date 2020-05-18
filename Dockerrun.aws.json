@@ -1,0 +1,79 @@
+{
+
+    "AWSEBDockerrunVersion": 2,
+  
+    "containerDefinitions": [
+  
+      {
+  
+        "name": "client",
+  
+        "image": "kartheek/multi-client",
+  
+        "hostname": "client",
+  
+        "essential": false,
+  
+        "memory": 128
+  
+      },
+  
+      {
+  
+        "name": "server",
+  
+        "image": "kartheek/multi-server",
+  
+        "hostname": "api",
+  
+        "essential": false,
+  
+        "memory": 128
+  
+      },
+  
+      {
+  
+        "name": "worker",
+  
+        "image": "kartheek/multi-worker",
+  
+        "hostname": "worker",
+  
+        "essential": false,
+  
+        "memory": 128
+  
+      },
+  
+      {
+  
+        "name": "nginx",
+  
+        "image": "kartheek/multi-nginx",
+  
+        "hostname": "nginx",
+  
+        "essential": true,
+  
+        "portMappings": [
+  
+          {
+  
+            "hostPort": 80,
+  
+            "containerPort": 80
+  
+          }
+  
+        ],
+  
+        "links": ["client", "server"],
+  
+        "memory": 128
+  
+      }
+  
+    ]
+  
+  }
